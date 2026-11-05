@@ -1,0 +1,27 @@
+Process Medicare Claims on Health Rules Payor (HRP) application, Claims are data captured or received electronically and available in Health Rules Payor (HRP). The claim contains information about member, provider, services provided, and corresponding charges claimed. The processor checks eligibility, provider contracts and authorizations. The processor checks for standard applicable rates, state mandates, exceptions and takes appropriate action of either paying the claim, denying with appropriate reasoning, escalating the claim for more information, or transferring it per guidelines. The processor refers to the number of applications to validate information contained on the claim and references e-Policies to process the claim. I
+
+➤ Analysts receive the claims in spreadsheet assignment.
+
+o Login to HRP.
+
+o Open the claim and validate Member, Provider, and COB details.
+
+Determine whether the claim is Transplant or Non-Transplant based on the applicable trigger and denial messages.
+
+o Review the audit log notes for any specific claim-processing instructions.
+
+Review the claim history for any other claims billed for the same Date of Service (DOS), service, and attending physician or supplier.
+
+Validate Summary TAB for Denial message codes and override with payment or correct denial codes
+
+o Check service, Billed and Facility NPI'S from View input and search in CMS Opioid Treatment Program
+
+Providers list As policy says, Any of the NPIs present in CMS Certified list override the denials and pay the claim. Else
+
+checks for Member Dual eligibility claim line will be denied or paid for professional and Institutional
+
+outpatient claims. o Validate the cost share and applied pricing.
+
+o Update the required message codes.
+
+Finalize the claim by updating audit log comments.
