@@ -1,33 +1,93 @@
-RPA
+The Bot logs in to HRP using authorized credentiah.
 
-EWM
+Workbasket window Opens the assigned claim
 
-HRP
+Extracts and validates the Member, Provider, and COB details.
 
-TIN
+Extracts SERVICE CODE, Modifier, Member Dual coverage from HRP, Billing, Servicing and Facility NPI
 
-NPI
+Navigates to the Exception tab and identifies the CRMOTP trigger lines.
 
-PIN
+details from View input and other applicable line details.
 
-DOB
+Bot checks the trigger CRMOTP billed lines and proceed with policy validations
 
-DOS
+Check the Summary TAB for ADTS or ADYS Denial message codes present CRMOTP trigger lines.
 
-Expansion
+Bot checks Billed NPI's are present in the CMS Opioid Treatment Program Providers list:
 
-Robotic Process Automation
+If any one of the NPI is listed in CMS Certified provider list, Then Don't Deny the claim with ADTS or ADYS, Do Manual override and pay the claim with HRP pricing
 
-Electronic Workflow Management
+If NPIs are not in CMS provider list, then check Member is Dual eligibility IF Member Dual eligible then deny with Message code ADTS
 
-Health Rules Payor
+IF Member Not having Dual eligibility, then deny with Message code ADYS
 
-Tax Identification Number
+Check the Summary TAB Override the denials and pay the claim.
 
-National Provider Identified
+for A778, A779, A780 A Denial message codes present CRMOTP trigger lines.
 
-Provider Identification Number
+When No Denials applied on CRMOTP lines check claim Type is professional
 
-Date of Birth
+IF Claim Type is professional and has no denials then check POS 58 billed, if not billed then deny the cleim with ADFS, Else next step
 
-Date of Service
+Billed claim is with SERVICE CODE codes are in G0137, G0532-60536, G1028, G2067-62080, G7215 or G2216 with other SERVICE CODE then other SERVICE CODE lines will be denied with
+
+ADNS Billed claim is with SERVICE CODE codes are in G0137, 60532-60536, G1028, 62067-62080,
+
+G2215 or G2216 alone then check History
+
+IF History claim found deny with A483 message code for Par and A485 message code for
+
+Non par provider claimsIf No History claim, then check Member Dual eligibility and NPIs are falling in CMS provider list.
+
+IF No Dual eligibility and not listed in NPI Deny with ADYS
+
+o IF No Dual eligibility but NPI listed then pay the claim at INN NW.
+
+IF Dual eligibility and not listed in NPI then Deny with ADTS
+
+IF Dual eligibility and listed in NPI then pay the claim at INN NW.
+
+When No Denials applied on CRMOTP lines check claim Type is Institutional
+
+➤ Check the criteria met, if not met the criteria or if anyone missing deny the claim with ADD6.
+
+Bill with condition code 89
+
+Bill Type should be 013X, 85x, 87X
+
+Each service line must be with Charges and Revenue codes
+
+➤ Else IF Criteria met and Bill type is 87X, continue else Go to next step.
+
+Check Revenue code and charges, if available continue else Deny the claim with ADD6.
+
+Claim billed with other SERVICE CODE codes along G0137, G0532-G0536, G1028, G2067-G2080, G2215 or G2216 Then deny other SERVICE CODE codes with ADNS and pay G0137, G0532-G0536, G1028, G2067-G2080, G2215 or G2216 with HRP pricing.
+
+claim billed only with SERVICE CODE codes are in G0137, G0532-G0536, G1028, G2067
+
+-G2080, G2215 or G2216 then
+
+o Check the Member history for the same date if any claim is found as paid or in needs review then deny with A483 message code for par provider, A485
+
+message code for Non par providers. then
+
+check Member Dual eligibility and NPIs are falling in CMS provider list
+
+IF No Dual eligibility and not listed in NPI Deny with ADYS
+
+IF No Dual eligibility but NPI listed then pay the claim at INN NW.
+
+IF Dual eligibility and not listed in NPI then Deny with ADTS
+
+IF Dual eligibility and listed in NPI then pay the claim at INN NW.
+
+➤IF 87X is not billed then check 013X, 85x, if yes follow SERVICE CODE code validation from above
+
+else deny with ADNS message code
+
+Clicks on 'Preview Results"
+
+Validates pricing and cost share
+
+Click on Approve and update Audit log comments
